@@ -1,8 +1,14 @@
 {
   "name": "ngx-route-maker",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "peerDependencies": {
-    "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14"
-  }
+    "@angular/common": "^6.0.0",
+    "@angular/core": "^6.0.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/Cach/ngx-route-maker"
+  },
+  "homepage": "https://github.com/Cach/ngx-route-maker",
+  "keywords": ["angular", "angular 2", "angular router"]
 }
