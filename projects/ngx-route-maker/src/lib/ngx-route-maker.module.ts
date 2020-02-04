@@ -24,4 +24,17 @@ export class NgxRouteMakerModule {
     };
   }
 
+  static forChild(config?: NgxRouteMakerConfig): ModuleWithProviders {
+    return {
+      ngModule: NgxRouteMakerModule,
+      providers: [
+        NgxRouteMakerService,
+        {
+          provide: NgxRouteMakerConfigService,
+          useValue: config
+        }
+      ]
+    };
+  }
+
 }

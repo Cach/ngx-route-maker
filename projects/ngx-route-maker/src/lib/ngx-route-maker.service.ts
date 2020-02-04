@@ -22,6 +22,10 @@ export class NgxRouteMakerService {
   public makeRouteByName(name: string|string[], params: any = {}) {
     const route = this._getPath(name);
 
+    if (!route) {
+      throw new Error('Route is not found');
+    }
+
     return this._replaceVariables(route, params);
   }
 
@@ -38,7 +42,7 @@ export class NgxRouteMakerService {
         return name.reduce((o, i) => o[i], this.routes);
       }
     } catch {
-      throw new Error('Routes is not found');
+      throw new Error('Route is not found');
     }
 
     return null;
