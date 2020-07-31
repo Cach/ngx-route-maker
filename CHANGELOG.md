@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1
+ - updating dependencies
+
 ## 1.1.0
 
 - fix: making route with multiple depth
