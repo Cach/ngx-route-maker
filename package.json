@@ -1,10 +1,10 @@
 {
   "name": "ngx-library",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --project=ngx-route-maker",
+    "build": "ng build ngx-route-maker",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

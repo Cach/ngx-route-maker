@@ -11,8 +11,8 @@ export class NgxRouteMakerPipe implements PipeTransform {
   ) {
   }
 
-  public transform(name: string, params: any = {}): string {
-    return this.ngxRouteMakerService.makeRouteByName(name, params);
+  public transform(name: string, params: any = {}, defaultRoute?: string): string {
+    return this.ngxRouteMakerService.make(name, params, defaultRoute);
   }
 
 }

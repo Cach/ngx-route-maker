@@ -2,6 +2,9 @@
 
 This library for generating routes
 
+[![NPM Version](https://img.shields.io/npm/v/ngx-route-maker)](https://www.npmjs.com/package/ngx-route-maker)
+[![NPM Size](https://img.shields.io/bundlephobia/min/ngx-route-maker?color=successg)](https://www.npmjs.com/package/ngx-route-maker)
+
 ## Install
 
 ```bash
@@ -11,35 +14,25 @@ $ npm install ngx-route-maker --save
 Add package to NgModule imports:
 
 ```typescript
-import { NgxRouteMakerModule } from 'ngx-route-maker';
+import { NgxRouteMakerConfig, NgxRouteMakerModule } from 'ngx-route-maker';
 
-const routes = {
-  home: '/',
-  dashboard: '/dashboard',
-  pages: {
-    page: '/pages/{slug}'
+const routesConfig: NgxRouteMakerConfig = {
+  routes: {
+    home: '/',
+    dashboard: '/dashboard',
+    pages: {
+      _path: 'pages',
+      page: '/{slug}',
+      anotherPage: '/another/{slug}'
+    }
   }
 };
 
 @NgModule({
   ...
-  NgxRouteMakerModule.forRoot(routes)
+  NgxRouteMakerModule.forRoot(routesConfig),
   ...
 })
-```
-
-## Generate
-
- - From string: `/pages/new-page`
- 
-```typescript
-this.routeMaker.makeRouteByName('pages.page', { slug: 'new-page' });
-```
-
- - From array: `/pages/new-page`
- 
-```typescript
-this.routeMaker.makeRouteByName(['pages', 'page'], { slug: 'new-page' });
 ```
 
 ## Usage
@@ -57,23 +50,65 @@ export class DashboardComponent {
   }
 
   public getUrlByString(): string {
-    return this.routeMaker.makeRouteByName('pages.page', { slug: 'new-page' });
+    return this.routeMaker.make('pages.page', { slug: 'new-page' });
   }
 
   public getUrlByArray(): string {
-    return this.routeMaker.makeRouteByName(['pages', 'page'], { slug: 'new-page' });
+    return this.routeMaker.make(['pages', 'page'], { slug: 'new-page' });
   }
 
 }
 ```
 
- - Usage with pipe:
+## Usage with service
+
+ - From string: `/pages/new-page`
+ 
+```typescript
+this.routeMaker.make('pages.page', { slug: 'new-page' });
+```
+
+ - From array: `/pages/new-page`
+ 
+```typescript
+this.routeMaker.make(['pages', 'page'], { slug: 'new-page' });
+```
+
+ - With default route for empty result: `/home`
+ 
+```typescript
+this.routeMaker.make('fake.path', {}, '/home');
+```
+
+otherwise, you'll get an error for non-existent route
+
+## Usage with pipe:
+
+ - From string: `/pages/new-page`
 
 ```html
 <a [routerLink]="'pages.page' | makeRoute: { slug: 'new-page' }">My Link</a>
 ```
- - alternative variant:
+ - From array: `/pages/new-page`
 
 ```html
 <a [routerLink]="['pages', 'page'] | makeRoute: { slug: 'new-page' }">My Link</a>
 ```
+
+ - With default route for empty result: `/home`
+
+```html
+<a [routerLink]="'pages.page' | makeRoute: { slug: 'new-page' } : '/home'">My Link</a>
+```
+
+####NgxRouteMakerConfig
+
+| Key | Value |
+| --- | --- |
+| routes | NgxRouteMaker |
+
+####NgxRouteMaker
+| Key | Value |
+| --- | --- |
+| _path | that's prefix which will be applied for each inside route in the same depth |
+| [key: string] | `string` or `NgxRouteMaker` |

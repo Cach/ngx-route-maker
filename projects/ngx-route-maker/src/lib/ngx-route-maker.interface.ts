@@ -1,3 +1,4 @@
 export interface NgxRouteMaker {
-  [key: string]: any;
+  _path?: string;
+  [key: string]: NgxRouteMaker|string;
 }
