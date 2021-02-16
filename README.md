@@ -101,13 +101,13 @@ otherwise, you'll get an error for non-existent route
 <a [routerLink]="'pages.page' | makeRoute: { slug: 'new-page' } : '/home'">My Link</a>
 ```
 
-####NgxRouteMakerConfig
+#### NgxRouteMakerConfig
 
 | Key | Value |
 | --- | --- |
 | routes | NgxRouteMaker |
 
-####NgxRouteMaker
+#### NgxRouteMaker
 | Key | Value |
 | --- | --- |
 | _path | that's prefix which will be applied for each inside route in the same depth |
