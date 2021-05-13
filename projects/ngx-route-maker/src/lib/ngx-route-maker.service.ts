@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { NgxRouteMakerConfigService } from './ngx-route-maker.provider';
 import { NgxRouteMakerConfig } from './ngx-route-maker-config.interface';
-import { NgxRouteMaker } from './ngx-route-maker.interface';
+import { NgxRouteMaker } from './ngx-route-maker.type';
 
 @Injectable({
   providedIn: 'root'
